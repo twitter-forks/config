@@ -40,7 +40,7 @@ class UnitParserTest extends TestUtils {
         assertTrue(e2.getMessage().contains("duration number"))
     }
 
-    // https://github.com.twitter_typesafehub/config/issues/117
+    // https://github.com/typesafehub/config/issues/117
     // this broke because "1d" is a valid double for parseDouble
     @Test
     def parseOneDayAsMilliseconds(): Unit = {

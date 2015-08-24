@@ -18,11 +18,11 @@ object ConfigBuild extends Build {
     )
 
     object sonatype extends PublishToSonatype {
-        def projectUrl    = "https://github.com.typesafehub/config"
+        def projectUrl    = "https://github.com/typesafehub/config"
         def developerId   = "havocp"
         def developerName = "Havoc Pennington"
         def developerUrl  = "http://ometer.com/"
-        def scmUrl        = "git://github.com.typesafehub/config.git"
+        def scmUrl        = "git://github.com/typesafehub/config.git"
     }
 
     override val settings = super.settings ++ Seq(isSnapshot <<= isSnapshot or version(_ endsWith "-SNAPSHOT"))

@@ -1029,7 +1029,7 @@ class PublicApiTest extends TestUtils {
 
     @Test
     def heuristicIncludeChecksClasspath(): Unit = {
-        // from https://github.com.twitter_typesafehub/config/issues/188
+        // from https://github.com/typesafehub/config/issues/188
         withScratchDirectory("heuristicIncludeChecksClasspath") { dir =>
             val f = new File(dir, "foo.conf")
             writeFile(f, """
