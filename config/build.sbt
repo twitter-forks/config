@@ -74,7 +74,7 @@ findbugsMaxMemory := 2000
 
 jacoco.settings
 
-javacOptions in (Compile, compile) ++= Seq("-source", "1.6", "-target", "1.8",
+javacOptions in (Compile, compile) ++= Seq("-source", "1.6", "-target", "1.7",
                                            "-g", "-Xlint:unchecked")
 
 // because we test some global state such as singleton caches,
@@ -89,4 +89,4 @@ javadocSourceBaseUrl := {
     yield s"https://github.com/typesafehub/config/blob/$gitHead/config/src/main/java"
 }
 
-javaVersionPrefix in javaVersionCheck := Some("1.8")
+javaVersionPrefix in javaVersionCheck := Some("1.7")
