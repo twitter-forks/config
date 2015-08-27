@@ -604,7 +604,7 @@ final class Tokenizer {
         // parse multiple tokens. When that happens it will populate this queue and pop
         // from it until empty before attempting to parse a new token.
         // Substitutions within quoted strings are an example of this.
-        private static Queue<Token> nextTokensQueue = new LinkedList<Token>();
+        private Queue<Token> nextTokensQueue = new LinkedList<Token>();
 
         private Token pullNextToken(WhitespaceSaver saver) throws ProblemException {
             if (!nextTokensQueue.isEmpty()) {
