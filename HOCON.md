@@ -913,6 +913,10 @@ equal to "a" nothing would be merged.
 The left hand side substitution cannot be optional. Currently, only equality comparisons are supported. The right hand side
 of the expression can be any string, quoted or unquoted, or a boolean.
 
+Conditionals are always evaluated last, after the rest of the object has been resolved.  This is so the left hand side
+substitution can be resolved properly. One effect of this is that a key in a conditional will override the same key in
+the parent object even if the key appears after the conditional in the parent object.
+
 ### Includes
 
 #### Include syntax
