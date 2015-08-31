@@ -1,6 +1,6 @@
-package com.typesafe.config.impl
+package com.twitter_typesafe.config.impl
 
-import com.typesafe.config.{ ConfigException, ConfigSyntax, ConfigParseOptions }
+import com.twitter_typesafe.config.{ ConfigException, ConfigSyntax, ConfigParseOptions }
 import org.junit.Assert._
 import org.junit.Test
 
@@ -63,6 +63,8 @@ class ConfigDocumentParserTest extends TestUtils {
         parseTest(" foo : bar ")
         parseTest("""include "foo.conf" """)
         parseTest("if [${foo} == bar] { key: value }");
+        parseTest("for [foo, bar] { key: value }");
+        parseTest("for ${foo} { key: value }");
         parseTest("   \nfoo:bar\n    ")
 
         // Can parse a map with all simple types

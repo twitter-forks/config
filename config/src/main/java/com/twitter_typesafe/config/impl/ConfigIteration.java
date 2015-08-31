@@ -4,21 +4,21 @@ import com.twitter_typesafe.config.ConfigException;
 
 import java.util.Map;
 
-final class ConfigConditional {
+final class ConfigIteration {
 
     private SubstitutionExpression left;
     private AbstractConfigValue right;
     private SimpleConfigObject body;
-
-    ConfigConditional(SubstitutionExpression left, AbstractConfigValue right, SimpleConfigObject body) {
-        this.left = left;
-        this.right = right;
-        this.body = body;
-
-        if (this.left.optional()) {
-            throw new ConfigException.BugOrBroken("Substitution " + this.left.toString() + " in conditional expression cannot be optional");
-        }
-    }
+//
+//    ConfigConditional(SubstitutionExpression left, AbstractConfigValue right, SimpleConfigObject body) {
+//        this.left = left;
+//        this.right = right;
+//        this.body = body;
+//
+//        if (this.left.optional()) {
+//            throw new ConfigException.BugOrBroken("Substitution " + this.left.toString() + " in conditional expression cannot be optional");
+//        }
+//    }
 
     public SimpleConfigObject resolve(ResolveContext context, ResolveSource source) {
         try {

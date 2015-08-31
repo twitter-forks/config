@@ -1,11 +1,11 @@
 /**
  *   Copyright (C) 2015 Typesafe Inc. <http://typesafe.com>
  */
-package com.typesafe.config.impl;
+package com.twitter_typesafe.config.impl;
 
 import java.util.*;
 
-import com.typesafe.config.*;
+import com.twitter_typesafe.config.*;
 
 final class ConfigDocumentParser {
     static ConfigNodeRoot parse(Iterator<Token> tokens, ConfigOrigin origin, ConfigParseOptions options) {
@@ -294,6 +294,10 @@ final class ConfigDocumentParser {
                     && Tokens.getUnquotedText(t).equals("if");
         }
 
+        private static boolean isForKeyword(Token t) {
+            return Tokens.isUnquotedText(t)
+                    && Tokens.getUnquotedText(t).equals("for");
+        }
         private static boolean isUnquotedWhitespace(Token t) {
             if (!Tokens.isUnquotedText(t))
                 return false;
@@ -314,6 +318,39 @@ final class ConfigDocumentParser {
             } else {
                 return t == Tokens.COLON || t == Tokens.EQUALS || t == Tokens.PLUS_EQUALS;
             }
+        }
+
+        private ConfigNodeIteration parseIteration(ArrayList<AbstractConfigNode> children) {
+            ArrayList<AbstractConfigNode> preIterChildren = new ArrayList<AbstractConfigNode>();
+            ArrayList<AbstractConfigNode> postIterChildren = new ArrayList<AbstractConfigNode>();
+            Token next = nextTokenCollectingWhitespace(preIterChildren);
+
+            ConfigNodeSingleToken sub = null;
+            ConfigNodeComplexValue array = null;
+
+            if (Tokens.isSubstitution(next)) {
+                sub = new ConfigNodeSingleToken(next);
+            } else if (next == Tokens.OPEN_SQUARE) {
+                array = parseArray();
+            } else {
+                throw parseError("for loop can only use an array or a substitution as an iterable source");
+            }
+
+            Token openCurlyToken = nextTokenCollectingWhitespace(postIterChildren);
+            if (openCurlyToken != Tokens.OPEN_CURLY)
+                throw parseError("must open a loop body using {");
+
+            ConfigNodeComplexValue body = parseObject(true);
+
+            children.addAll(preIterChildren);
+            children.addAll(postIterChildren);
+
+            if (sub != null) {
+                return new ConfigNodeIteration(preIterChildren, postIterChildren, body, sub);
+            } else {
+                return new ConfigNodeIteration(preIterChildren, postIterChildren, body, array);
+            }
+
         }
 
         private ConfigNodeConditional parseConditional(ArrayList<AbstractConfigNode> children) {
@@ -441,7 +478,10 @@ final class ConfigDocumentParser {
                     ArrayList<AbstractConfigNode> ifNodes = new ArrayList<AbstractConfigNode>();
                     ifNodes.add(new ConfigNodeSingleToken(t));
                     objectNodes.add(parseConditional(ifNodes));
-
+                } else if (flavor != ConfigSyntax.JSON && isForKeyword(t)) {
+                    ArrayList<AbstractConfigNode> forNodes = new ArrayList<AbstractConfigNode>();
+                    forNodes.add(new ConfigNodeSingleToken(t));
+                    objectNodes.add(parseIteration(forNodes));
                 } else {
                     keyValueNodes = new ArrayList<AbstractConfigNode>();
                     Token keyToken = t;

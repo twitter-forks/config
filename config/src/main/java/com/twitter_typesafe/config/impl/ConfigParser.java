@@ -1,7 +1,7 @@
 /**
  *   Copyright (C) 2011-2012 Typesafe Inc. <http://typesafe.com>
  */
-package com.typesafe.config.impl;
+package com.twitter_typesafe.config.impl;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -14,7 +14,8 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 
-import com.typesafe.config.*;
+import com.twitter_typesafe.config.*;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 final class ConfigParser {
     static AbstractConfigValue parse(ConfigNodeRoot document,
@@ -190,6 +191,10 @@ final class ConfigParser {
                     values.put(key, v);
                 }
             }
+        }
+
+        private ConfigIteration parseIteration(ConfigNodeIteration n) {
+            throw new NotImplementedException();
         }
 
         private ConfigConditional parseConditional(ConfigNodeConditional n) {

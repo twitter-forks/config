@@ -1,4 +1,4 @@
-package com.typesafe.config.impl;
+package com.twitter_typesafe.config.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,9 +23,7 @@ final class ConfigNodeConditional extends AbstractConfigNode {
         for (AbstractConfigNode child : children) {
             tokens.addAll(child.tokens());
         }
-        for (Token token : body.tokens()) {
-            tokens.add(token);
-        }
+        tokens.addAll(body.tokens());
         return tokens;
     }
 }
