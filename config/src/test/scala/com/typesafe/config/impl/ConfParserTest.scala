@@ -817,6 +817,7 @@ class ConfParserTest extends TestUtils {
         assertEquals(resolved.getConfig("a").getString("b"), "b")
         assertEquals(resolved.getConfig("a").getString("c"), "c")
         assertEquals(resolved.getConfig("a").getString("f"), "b")
+        assertEquals(resolved.getConfig("a").getString("name"), "baz")
 
         assertEquals(resolved.getConfig("a").getConfig("nested").getBoolean("works"), true)
         intercept[Exception] {

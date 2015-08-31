@@ -411,14 +411,15 @@ final class SimpleConfigObject extends AbstractConfigObject implements Serializa
         final ResolveSource sourceWithParent = source.pushParent(this);
 
         try {
+
             ResolveModifier modifier = new ResolveModifier(context, sourceWithParent);
 
             AbstractConfigValue value = modifyMayThrow(modifier);
 
             for (ConfigConditional cond: this.conditionals) {
                 SimpleConfigObject body = cond.resolve(context, sourceWithParent);
-                AbstractConfigObject resolvedBody = body.resolveSubstitutions(context, source).value;
-                value = value.mergedWithObject(resolvedBody);
+                AbstractConfigObject resolvedBody = body.resolveSubstitutions(context, sourceWithParent).value;
+                value = resolvedBody.withFallback(value);
             }
 
             return ResolveResult.make(modifier.context, value).asObjectResult();
