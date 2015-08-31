@@ -15,7 +15,6 @@ import java.util.ListIterator;
 import java.util.Map;
 
 import com.twitter_typesafe.config.*;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 final class ConfigParser {
     static AbstractConfigValue parse(ConfigNodeRoot document,
@@ -194,7 +193,7 @@ final class ConfigParser {
         }
 
         private ConfigIteration parseIteration(ConfigNodeIteration n) {
-            throw new NotImplementedException();
+            return null;
         }
 
         private ConfigConditional parseConditional(ConfigNodeConditional n) {
