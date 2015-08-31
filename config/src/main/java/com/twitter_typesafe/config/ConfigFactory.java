@@ -1,7 +1,7 @@
 /**
  *   Copyright (C) 2011-2012 Typesafe Inc. <http://typesafe.com>
  */
-package com.typesafe.config;
+package com.twitter_typesafe.config;
 
 import java.io.File;
 import java.io.Reader;
@@ -11,8 +11,8 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Callable;
 
-import com.typesafe.config.impl.ConfigImpl;
-import com.typesafe.config.impl.Parseable;
+import com.twitter_typesafe.config.impl.ConfigImpl;
+import com.twitter_typesafe.config.impl.Parseable;
 
 /**
  * Contains static methods for creating {@link Config} instances.

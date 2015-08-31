@@ -1,7 +1,7 @@
 /**
  *   Copyright (C) 2015 Typesafe Inc. <http://typesafe.com>
  */
-package com.typesafe.config.parser;
+package com.twitter_typesafe.config.parser;
 
 /**
  * A node in the syntax tree for a HOCON or JSON document.

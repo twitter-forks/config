@@ -1,7 +1,7 @@
 /**
  *   Copyright (C) 2011-2012 Typesafe Inc. <http://typesafe.com>
  */
-package com.typesafe.config;
+package com.twitter_typesafe.config;
 
 /**
  * A set of options related to resolving substitutions. Substitutions use the

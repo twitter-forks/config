@@ -7,7 +7,7 @@ import com.typesafe.sbt.SbtPgp.PgpKeys.{ useGpg, publishSigned, publishLocalSign
 // Release tags should follow: http://semver.org/
 
 SbtGit.versionWithGit
-SbtGit.git.baseVersion := "1.3.0"
+SbtGit.git.baseVersion := "1.4.2"
 
 organization in GlobalScope := "com.typesafe"
 
