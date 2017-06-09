@@ -1,4 +1,4 @@
-Configuration library for JVM languages.
+Configuration library for the JVM languages.
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.typesafe/config/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.typesafe/config)
 [![Build Status](https://travis-ci.org/typesafehub/config.svg?branch=master)](https://travis-ci.org/typesafehub/config)
